@@ -1,19 +1,27 @@
+function toRad(angle){
+	return angle * Math.PI / 180;
+}
+function toDeg(angle){
+	return angle * (180 / Math.PI);
+}
+
+
 var objSol = {
 	mass: 1000,
 	color: '#ffffff',
 	v: 0
 }
 
-
 var obj1 = {
 	mass: 20,
-	color: '#ee0000'
-}
-
-var obj2 = {
-	mass: 30,
-	color: '#00ee00'
-}
+	color: '#ee0000',
+	v: 0,
+	coords: {
+		x: 400,
+		y: 100
+	},
+	dirAng: toRad(190)
+};
 
 screen = {
 	x: 1000,
@@ -61,9 +69,17 @@ $(document).ready(function() {
 
 //Draw star
 	ctxBg.beginPath();
-	ctxBg.arc(screen.cX, screen.cY, 5, 0, 2* Math.PI, true);
+	ctxBg.arc(screen.cX, screen.cY, 10, 0, 2* Math.PI, true);
 	ctxBg.fillStyle = objSol.color;
 	ctxBg.fill();
 	ctxBg.closePath();
 // /Draw star
+
+//Draw planet
+	ctxPl[0].beginPath();
+	ctxPl[0].arc(obj1.coords.x, obj1.coords.y, 5, 0, 2* Math.PI, true);
+	ctxPl[0].fillStyle = obj1.color;
+	ctxPl[0].fill();
+	ctxPl[0].closePath();
+// / Draw planet
 });
