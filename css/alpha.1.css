@@ -1,0 +1,28 @@
+.main{
+	position: relative;
+	width: 100%;
+	height: 99vh;
+	overflow: scroll;
+}
+
+#background-layer, #star-layer,
+#planet1-layer, #planet2-layer, #planet3-layer, #planet4-layer,
+#planet5-layer, #planet6-layer, #planet7-layer, #planet8-layer{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1200px;
+	height: 1200px;
+}
+#background-layer{
+	position: relative;
+	background: #000000;
+}
+
+.controls{
+	position: fixed;
+	bottom: 30px;
+	left: 0;
+	width: 10%;
+	background-color: #fff;
+}

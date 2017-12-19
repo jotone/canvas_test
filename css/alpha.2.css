@@ -1,0 +1,38 @@
+.main{
+	position: relative;
+	width: 100%;
+	height: 99vh;
+	overflow: scroll;
+}
+
+#background-layer, #moving_obj{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1000px;
+	height: 1000px;
+}
+
+#background-layer{
+	position: relative;
+	background: #000000;
+}
+
+.controls{
+	position: fixed;
+	bottom: 30px;
+	left: 0;
+	width: 10%;
+	background-color: #fff;
+}
+
+.coord-x{
+	color: #fff;
+	position: absolute;
+	top:0;
+}
+.coord-y{
+	color: #fff;
+	position: absolute;
+	left: 0;
+}

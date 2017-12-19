@@ -1,0 +1,43 @@
+.canvas-wrap{
+	width: 99%;
+	height: 99vh;
+	background: url('../img/bg.png');
+}
+body{
+	position: relative;
+}
+.coord-x{
+	position: absolute;
+	top:0;
+}
+.coord-y{
+	position: absolute;
+	left: 0;
+}
+
+.controls-wrap{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 10%;
+	height: 90vh;
+	background-color: #efefef;
+}
+
+
+#background-layer{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 90%;
+	height: 90vh;
+	background-color: #000;
+}
+
+ul.links{margin: 50px;}
+ul.links li{
+	font-size: 24px;
+	line-height: 48px;
+	letter-spacing: 1px;
+}
+ul.links li a:hover{color: #000;}
