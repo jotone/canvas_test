@@ -1,90 +1,47 @@
-var G = Math.pow(10, -11) * 6.67408;
+/**
+ * 1 min weight = 1 Ton
+ * 1 min length = 1 light second(Ls) = 299792458
+ */
+c = 299792458;
 
+G = 2.429573 * Math.pow(10, -36); // (Ls^3) / (Ton * second^2)
 
-function getForce(m1, m2, r){
-	/*r = Math.pow(10, 9) * r;
-	m1 = Math.pow(10, 23) * m1;
-	m2 = Math.pow(10, 23) * m2;*/
-	var GM = m1*m2*G;
-	var R = Math.pow(r, 2);
-	var F = GM/R;
-	return F;//* Math.pow(10, 28);
+var Soll = {
+	mass: 1.9885 * Math.pow(10, 27), //tons,
+	radius: 695.51 * Math.pow(10, 6) / c, //Ls
 }
 
-var m1 = 1.9885// * Math.pow(10, 7);
-console.log(getForce(m1, 48.675, 109) * Math.pow(10, 35));
-
-//F = G * ((m1 * m2)/(r^2))
-//G = 6.67408* 10^-11
-//Mass
-/*
-mass = mass^23
-a,b: a,b ^= 9
-Soll = {
-	mass: 1.9885 * 10^7
+var planets = {
+	1: {
+		mass: 0.333022 * Math.pow(10, 21), //tons,
+		radius: 2.4397 * Math.pow(10, 6) / c, //Ls
+	},
+	2: {
+		mass: 4.8675 * Math.pow(10, 21), //tons,
+		radius: 6.0518 * Math.pow(10, 6) / c, //Ls
+	},
+	3: {
+		mass: 5.9726 * Math.pow(10, 21), //tons,
+		radius: 6.3781 * Math.pow(10, 6) / c, //Ls
+	},
+	4: {
+		mass: 0.64171 * Math.pow(10, 21), //tons,
+		radius: 3.3962 * Math.pow(10, 6) / c, //Ls
+	},
+	5: {
+		mass: 1898.6 * Math.pow(10, 21), //tons,
+		radius: 71.492 * Math.pow(10, 6) / c, //Ls
+	},
+	6: {
+		mass: 568.46 * Math.pow(10, 21), //tons,
+		radius: 60.268 * Math.pow(10, 6) / c, //Ls
+	},
+	7: {
+		mass: 86.832 * Math.pow(10, 21), //tons,
+		radius: 25.559 * Math.pow(10, 6) / c, //Ls
+	},
+	8: {
+		mass: 102.43 * Math.pow(10, 21), //tons,
+		radius: 24.764 * Math.pow(10, 6) / c, //Ls
+	}
 }
-Mercu = {
-	mass: 3.33022
-	a: 46
-	b: 69.8
-	angle: 29.12
-	Fa: 20.8869 * 10^21
-	Fb: 9.0715 * 10^21
-}
-Venus = {
-	mass: 48.675,
-	a: 107.5,
-	b: 109,
-	angle: 54.85
-	Fa: 55.8992 * 10^21
-	Fb: 54.3713 * 10^21
-}
-Earth = {
-	mass: 59.726,
-	a: 147,
-	b: 152,
-	angle: 114.2
-	Fa:
-	Fb:
-}
-Mars  = {
-	mass: 6.4171,
-	a: 206.5,
-	b: 249,
-	angle: 286.5
-	Fa:
-	Fb:
-}
-Jupit = {
-	mass: 18986,
-	a: 740.5,
-	b: 816.5,
-	angle: 275
-	Fa:
-	Fb:
-}
-Saturn= {
-	mass: 5684.6,
-	a: 1354,
-	b: 1513,
-	angle: 336
-	Fa:
-	Fb:
-}
-Uran  = {
-	mass: 868.32,
-	a: 2749,
-	b: 3004,
-	angle: 96.5
-	Fa:
-	Fb:
-}
-Neptun= {
-	mass: 1024.3,
-	a: 4453,
-	b: 4554,
-	angle: 265.6
-	Fa:
-	Fb:
-}
-*/
