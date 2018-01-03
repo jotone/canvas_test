@@ -1,114 +1,185 @@
-/**
- * 1 min weight = 1 Ton
- * 1 min length = 1 light second(Ls) = 299792458
- */
-c = 299792458;
+c = 299792458 //m/sec
+G =6.67408 * pow(10, -11) // (m^3)/(kg * sec^2)
 
-G = 2.429573 * Math.pow(10, -36); // (Ls^3) / (Ton * second^2)
-
-var Soll = {
-	mass: {
-		mantis: 1.9885,
-		pow: 27
-	}, //tons,
-	radius: 695.51 * Math.pow(10, 6) / c, //Ls
+var Sol = {
+	radius: { //m
+		m: 695.51,
+		p: Math.pow(10, 6)
+	},
+	mass: { //kg
+		m: 1.9885,
+		p: Math.pow(10, 30)
+	},
+	incline: 67.23 //per galaxy
 }
 
 var planets = {
-	1: { //Mercury
-		mass:{
-			mantis: 0.333022,
-			pow: 21
-		}, //tons
-		radius: 2.4397 * Math.pow(10, 6) / c, //Ls
-		a: 0.46001009 * Math.pow(10, 11)/ c,
-		b: 0.69817445 * Math.pow(10, 11)/ c,
-		velocity: 47360 / c, //Orbital speed
-		horAngle: 29.124, //pericenter Argument
-		vertAngle: 3.38 //incline per Star equator
-	},
-	2: { //Venus
+	1: {//Mercury
 		mass: {
-			mantis:4.8675,
-			pow: 21
-		}, //tons
-		radius: 6.0518 * Math.pow(10, 6) / c, //Ls
-		a: 1.07476259 * Math.pow(10, 11)/ c,
-		b: 1.08942109 * Math.pow(10, 11)/ c,
-		velocity: 35020 / c,
-		horAngle: 54.852,
-		vertAngle: 3.86
+			m: 3.33022,
+			p: 23
+		},
+		radius: {
+			m: 2.4397,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 46.001009,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 69.817445,
+			p: 9
+		},
+		selfIncline: 2.11, //self axis incline per orbit
+		incline: 3.38, // incline per Sol equator,
+		vertAngle: 29.124279 //vertical angle per Sol axis (Аргумент перицентра)
 	},
-	3: { //Earth
+	2: {//Venus
 		mass: {
-			mantis: 5.9726,
-			pow: 21
-		}, //tons
-		radius: 6.3781 * Math.pow(10, 6) / c, //Ls
-		a: 1.47098290 * Math.pow(10, 11)/ c,
-		b: 1.52098232 * Math.pow(10, 11)/ c,
-		velocity: 29783 / c,
-		horAngle: 114.208,
-		vertAngle: 7.115
+			m: 48.675,
+			p: 23
+		},
+		radius: {
+			m: 6.0518,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 107.476259,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 108.942109,
+			p: 9
+		},
+		selfIncline: 177.36, //self axis incline per orbit
+		incline: 3.86, // incline per Sol equator,
+		vertAngle: 54.85229 //vertical angle per Sol axis (Аргумент перицентра)
 	},
-	4: { //Mars
+	3: {//Earth
 		mass: {
-			mantis: 0.64171,
-			pow: 21
-		}, //tons
-		radius: 3.3962 * Math.pow(10, 6) / c, //Ls
-		a: 2.06655 * Math.pow(10, 11) / c,
-		b: 2.49232 * Math.pow(10, 11) / c,
-		velocity: 24130 / c,
-		horAngle: 286.462,
-		vertAngle: 5.65
+			m: 59.726,
+			p: 23
+		},
+		radius: {
+			m: 6.3781,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 147.098290,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 152.098232,
+			p: 9
+		},
+		selfIncline: 23.26, //self axis incline per orbit
+		incline: 7.155, // incline per Sol equator,
+		vertAngle: 114.20783 //vertical angle per Sol axis (Аргумент перицентра)
 	},
-	5: { //Upiter
+	4: {//Mars
 		mass: {
-			mantis: 1898.6,
-			pow: 21
-		},//tons
-		radius: 71.492 * Math.pow(10, 6) / c, //Ls
-		a: 7.405736 * Math.pow(10, 11) / c,
-		b: 8.165208 * Math.pow(10, 11) / c,
-		velocity: 13070 / c,
-		horAngle: 275.066,
-		vertAngle: 6.09
+			m: 6.4171,
+			p: 23
+		},
+		radius: {
+			m: 3.3962,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 206.655,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 249.232,
+			p: 9
+		},
+		selfIncline: 25.1919, //self axis incline per orbit
+		incline: 5.65, // incline per Sol equator,
+		vertAngle: 286.46230 //vertical angle per Sol axis (Аргумент перицентра)
 	},
-	6: { //Saturn
+	5: {//Jupiter
 		mass: {
-			mantis: 568.46,
-			pow: 21
-		}, //tons
-		radius: 60.268 * Math.pow(10, 6) / c, //Ls
-		a: 13.53572956 * Math.pow(10, 11) / c,
-		b: 15.13325783 * Math.pow(10, 11) / c,
-		velocity: 9690 / c,
-		horAngle: 336.013,
-		vertAngle: 5.51
+			m: 18986,
+			p: 23
+		},
+		radius: {
+			m: 71.492,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 740.5736,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 816.5208,
+			p: 9
+		},
+		selfIncline: 3.13, //self axis incline per orbit
+		incline: 6.09, // incline per Sol equator,
+		vertAngle: 275.066 //vertical angle per Sol axis (Аргумент перицентра)
 	},
-	7: { //Uranus
+	6: {//Saturn
 		mass: {
-			mantis: 86.832,
-			pow: 21
-		}, //tons
-		radius: 25.559 * Math.pow(10, 6) / c, //Ls
-		a: 27.48938461 * Math.pow(10, 11) / c,
-		b: 30.04419704 * Math.pow(10, 11) / c,
-		velocity: 6810 / c,
-		horAngle: 96.541,
-		vertAngle: 6.48
+			m: 5684.6,
+			p: 23
+		},
+		radius: {
+			m: 58.232,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 1353.572956,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 1513.325783,
+			p: 9
+		},
+		selfIncline: 26.73, //self axis incline per orbit
+		incline: 5.51, // incline per Sol equator,
+		vertAngle: 336.014 //vertical angle per Sol axis (Аргумент перицентра)
 	},
-	8: { //Neptune
+	7: {//Uranus
 		mass: {
-			mantis: 102.43,
-			pow: 21
-		}, //tons
-		radius: 24.764 * Math.pow(10, 6) / c, //Ls
-		a: 44.52940833 * Math.pow(10, 11) / c,
-		b: 45.53946490 * Math.pow(10, 11) / c,
-		velocity: 5434.9 / c,
-		horAngle: 265.647,
-		vertAngle: 6.43
+			m: 868.32,
+			p: 23
+		},
+		radius: {
+			m: 25.362,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 2748.938461,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 3004.419704,
+			p: 9
+		},
+		selfIncline: 97.77, //self axis incline per orbit
+		incline: 6.48, // incline per Sol equator,
+		vertAngle: 96.541318 //vertical angle per Sol axis (Аргумент перицентра)
+	},
+	8: {//Neptune
+		mass: {
+			m: 1024.3,
+			p: 23
+		},
+		radius: {
+			m: 24.622,
+			p: 6
+		},
+		ph: { //Perihelion
+			m: 4452.940833,
+			p: 9
+		},
+		ah: { //Aphelion
+			m: 4553.946490,
+			p: 9
+		},
+		selfIncline: 28.32, //self axis incline per orbit
+		incline: 6.43, // incline per Sol equator,
+		vertAngle: 265.646853 //vertical angle per Sol axis (Аргумент перицентра)
 	}
-}
+};
