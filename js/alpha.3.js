@@ -63,7 +63,6 @@ $(document).ready(function() {
 // /background layer
 
 	$('button[name=accept]').click(function(){
-
 		if(
 			($('input[name=x]').val().length > 0) &&
 			($('input[name=y]').val().length > 0) &&
@@ -74,31 +73,39 @@ $(document).ready(function() {
 				y: parseInt($('input[name=y]').val()),
 				mod:  parseInt($('input[name=vel]').val())
 			};
-
+			//Calculate perpendicular vector
 			var vector = calculateVector(obj);
 			drawObj(obj, vector);
 		}
 	});
 
 	function calculateVector(obj){
+		//Radius from center to obj
 		var OA = {
 			y: obj.y,
 			mod: sqrt( pow(obj.x, 2) + pow(obj.y, 2) )
 		};
 
+		//Radius vector projecting to Y axis
 		var OB = {mod: OA.y};
 
+		//Angle between Radius vector projecting to Y and Radius vector
 		var degBOA = Math.acos(OB.mod/OA.mod);
 
+		//Get perpendicular vector length from center
 		var OC = {
 			mod: sqrt( pow(OA.mod, 2) + pow(obj.mod,2) )
 		};
 
+		//Angle between Radius from center to obj and perpendicular vector
 		var degAOC = Math.asin(obj.mod / OC.mod);
 
+		//Calculate perpendicular vector coordinates
+		//Right part of coordinates axis
 		OC.x = (obj.x > 0)
 			? OC.mod * Math.sin(degAOC + degBOA)
 			: OC.x = OC.mod * Math.sin(degAOC - degBOA);
+		//Left part of coordinates axis
 		OC.y = (obj.x > 0)
 			? OC.mod * Math.cos(degAOC + degBOA)
 			: OC.y = OC.mod * Math.cos(degAOC - degBOA);
