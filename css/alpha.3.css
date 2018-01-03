@@ -28,3 +28,9 @@
 	position: absolute;
 	left: 0;
 }
+
+.data-wrap{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}

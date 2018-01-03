@@ -20,6 +20,12 @@
 	<canvas id="planet1" width="1000" height="1000"></canvas>
 </div>
 
+<div class="data-wrap">
+	<input name="x" type="number" value="0"><br><br>
+	<input name="y" type="number" value="0"><br><br>
+	<button name="accept" type="button">Proceed</button>
+</div>
+
 <script type="text/javascript" src="js/jquery.3.2.1.min.js"></script>
 <script type="text/javascript" src="js/alpha.3.js" defer></script>
 </body>

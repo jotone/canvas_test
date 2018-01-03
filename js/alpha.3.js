@@ -62,45 +62,29 @@ $(document).ready(function() {
 	// / Draw grid
 // /background layer
 
-	var obj = [
-		{
-			x: 25,
-			y: 25,
-			mod: 120
-		},
-		{
-			x: -50,
-			y: 50,
-			mod: 34
-		},
-		{
-			x: 0,
-			y: -75,
-			mod: 56
-		},
-		{
-			x: -100,
-			y: -100,
-			mod: 13
-		},
-		{
-			x: -105,
-			y: 145,
-			mod: 72
+	$('button[name=accept]').click(function(){
+		var obj = {
+			mod: 50
 		}
-	]
+		if( ($('input[name=x]').val().length > 0) && ($('input[name=y]').val().length > 0) ){
+			obj.x = parseInt($('input[name=x]').val());
+			obj.y = parseInt($('input[name=y]').val());
 
-	//Draw center
-	ctxPl[0].beginPath();
-	ctxPl[0].arc(screen.cX, screen.cY, 10, 0, 2*Math.PI, true);
-	ctxPl[0].fillStyle = '#ee0';
-	ctxPl[0].fill();
-	ctxPl[0].closePath();
+			drawObj(obj)
+		}
+	});
 
-	for(var i in obj){
+	function drawObj(obj){
+		ctxPl[0].clearRect(0,0,1000,1000);
+		//Draw center
+		ctxPl[0].beginPath();
+		ctxPl[0].arc(screen.cX, screen.cY, 10, 0, 2*Math.PI, true);
+		ctxPl[0].fillStyle = '#ee0';
+		ctxPl[0].fill();
+		ctxPl[0].closePath();
 		//Draw obj
 		ctxPl[0].beginPath();
-		ctxPl[0].arc(screen.cX + obj[i].x, screen.cY - obj[i].y, 5, 0, 2*Math.PI, true);
+		ctxPl[0].arc(screen.cX + obj.x, screen.cY - obj.y, 5, 0, 2*Math.PI, true);
 		ctxPl[0].fillStyle = '#e00';
 		ctxPl[0].fill();
 		ctxPl[0].closePath();
@@ -110,14 +94,14 @@ $(document).ready(function() {
 		ctxPl[0].moveTo(screen.cX, screen.cY);
 		ctxPl[0].strokeStyle = '#fff';
 		ctxPl[0].lineWidth = '1';
-		ctxPl[0].lineTo(screen.cX + obj[i].x, screen.cY - obj[i].y);
+		ctxPl[0].lineTo(screen.cX + obj.x, screen.cY - obj.y);
 		ctxPl[0].stroke();
 		ctxPl[0].closePath();
 
 		var OA = {
-			x: obj[i].x,
-			y: obj[i].y,
-			mod: sqrt( pow(obj[i].x, 2) + pow(obj[i].y, 2) )
+			x: obj.x,
+			y: obj.y,
+			mod: sqrt( pow(obj.x, 2) + pow(obj.y, 2) )
 		}
 
 		var OB = {
@@ -129,25 +113,25 @@ $(document).ready(function() {
 		var degBOA = Math.acos(OB.mod/OA.mod);
 
 		var OC = {
-			mod: sqrt( pow(OA.mod, 2) + pow(obj[i].mod,2) )
+			mod: sqrt( pow(OA.mod, 2) + pow(obj.mod,2) )
 		}
 
-		var degAOC = Math.asin(obj[i].mod / OC.mod);
+		var degAOC = Math.asin(obj.mod / OC.mod);
 
-		OC.x = (obj[i].x > 0)
+		OC.x = (obj.x > 0)
 			? OC.mod * Math.sin(degAOC + degBOA)
 			: OC.x = OC.mod * Math.sin(degAOC - degBOA);
-		OC.y = (obj[i].x > 0)
+		OC.y = (obj.x > 0)
 			? OC.mod * Math.cos(degAOC + degBOA)
 			: OC.y = OC.mod * Math.cos(degAOC - degBOA);
 
 		//Draw velocity
 		ctxPl[0].beginPath();
-		ctxPl[0].moveTo(screen.cX + obj[i].x, screen.cY - obj[i].y);
+		ctxPl[0].moveTo(screen.cX + obj.x, screen.cY - obj.y);
 		ctxPl[0].strokeStyle = '#fff';
 		ctxPl[0].lineWidth = '1';
 		ctxPl[0].lineTo(screen.cX + OC.x, screen.cY - OC.y);
 		ctxPl[0].stroke();
 		ctxPl[0].closePath();
-	}
+	};
 });
