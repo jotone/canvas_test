@@ -23,6 +23,7 @@
 <div class="data-wrap">
 	<input name="x" type="number" value="0"><br><br>
 	<input name="y" type="number" value="0"><br><br>
+	<input name="vel" type="number" value="0"><br><br>
 	<button name="accept" type="button">Proceed</button>
 </div>
 

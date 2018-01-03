@@ -63,12 +63,17 @@ $(document).ready(function() {
 // /background layer
 
 	$('button[name=accept]').click(function(){
-		var obj = {
-			mod: 50
-		}
-		if( ($('input[name=x]').val().length > 0) && ($('input[name=y]').val().length > 0) ){
-			obj.x = parseInt($('input[name=x]').val());
-			obj.y = parseInt($('input[name=y]').val());
+
+		if(
+			($('input[name=x]').val().length > 0) &&
+			($('input[name=y]').val().length > 0) &&
+			($('input[name=vel]').val().length > 0)
+		){
+			var obj = {
+				x: parseInt($('input[name=x]').val()),
+				y: parseInt($('input[name=y]').val()),
+				mod:  parseInt($('input[name=vel]').val())
+			}
 
 			drawObj(obj)
 		}
