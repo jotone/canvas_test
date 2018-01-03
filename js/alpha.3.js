@@ -73,13 +73,39 @@ $(document).ready(function() {
 				x: parseInt($('input[name=x]').val()),
 				y: parseInt($('input[name=y]').val()),
 				mod:  parseInt($('input[name=vel]').val())
-			}
+			};
 
-			drawObj(obj)
+			calculateVector(obj)
 		}
 	});
 
-	function drawObj(obj){
+	function calculateVector(obj){
+		var OA = {
+			y: obj.y,
+			mod: sqrt( pow(obj.x, 2) + pow(obj.y, 2) )
+		};
+
+		var OB = {mod: OA.y};
+
+		var degBOA = Math.acos(OB.mod/OA.mod);
+
+		var OC = {
+			mod: sqrt( pow(OA.mod, 2) + pow(obj.mod,2) )
+		};
+
+		var degAOC = Math.asin(obj.mod / OC.mod);
+
+		OC.x = (obj.x > 0)
+			? OC.mod * Math.sin(degAOC + degBOA)
+			: OC.x = OC.mod * Math.sin(degAOC - degBOA);
+		OC.y = (obj.x > 0)
+			? OC.mod * Math.cos(degAOC + degBOA)
+			: OC.y = OC.mod * Math.cos(degAOC - degBOA);
+
+		drawObj(obj, OC)
+	}
+
+	function drawObj(obj, OC){
 		ctxPl[0].clearRect(0,0,1000,1000);
 		//Draw center
 		ctxPl[0].beginPath();
@@ -102,28 +128,6 @@ $(document).ready(function() {
 		ctxPl[0].lineTo(screen.cX + obj.x, screen.cY - obj.y);
 		ctxPl[0].stroke();
 		ctxPl[0].closePath();
-
-		var OA = {
-			y: obj.y,
-			mod: sqrt( pow(obj.x, 2) + pow(obj.y, 2) )
-		};
-
-		var OB = {mod: OA.y};
-
-		var degBOA = Math.acos(OB.mod/OA.mod);
-
-		var OC = {
-			mod: sqrt( pow(OA.mod, 2) + pow(obj.mod,2) )
-		};
-
-		var degAOC = Math.asin(obj.mod / OC.mod);
-
-		OC.x = (obj.x > 0)
-			? OC.mod * Math.sin(degAOC + degBOA)
-			: OC.x = OC.mod * Math.sin(degAOC - degBOA);
-		OC.y = (obj.x > 0)
-			? OC.mod * Math.cos(degAOC + degBOA)
-			: OC.y = OC.mod * Math.cos(degAOC - degBOA);
 
 		//Draw velocity
 		ctxPl[0].beginPath();
