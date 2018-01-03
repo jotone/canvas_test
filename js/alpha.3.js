@@ -104,22 +104,17 @@ $(document).ready(function() {
 		ctxPl[0].closePath();
 
 		var OA = {
-			x: obj.x,
 			y: obj.y,
 			mod: sqrt( pow(obj.x, 2) + pow(obj.y, 2) )
-		}
+		};
 
-		var OB = {
-			x: 0,
-			y: OA.y,
-			mod: OA.y
-		}
+		var OB = {mod: OA.y};
 
 		var degBOA = Math.acos(OB.mod/OA.mod);
 
 		var OC = {
 			mod: sqrt( pow(OA.mod, 2) + pow(obj.mod,2) )
-		}
+		};
 
 		var degAOC = Math.asin(obj.mod / OC.mod);
 
