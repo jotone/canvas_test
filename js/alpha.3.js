@@ -75,7 +75,8 @@ $(document).ready(function() {
 				mod:  parseInt($('input[name=vel]').val())
 			};
 
-			calculateVector(obj)
+			var vector = calculateVector(obj);
+			drawObj(obj, vector);
 		}
 	});
 
@@ -102,10 +103,10 @@ $(document).ready(function() {
 			? OC.mod * Math.cos(degAOC + degBOA)
 			: OC.y = OC.mod * Math.cos(degAOC - degBOA);
 
-		drawObj(obj, OC)
+		return OC;
 	}
 
-	function drawObj(obj, OC){
+	function drawObj(obj, vector){
 		ctxPl[0].clearRect(0,0,1000,1000);
 		//Draw center
 		ctxPl[0].beginPath();
@@ -134,7 +135,7 @@ $(document).ready(function() {
 		ctxPl[0].moveTo(screen.cX + obj.x, screen.cY - obj.y);
 		ctxPl[0].strokeStyle = '#fff';
 		ctxPl[0].lineWidth = '1';
-		ctxPl[0].lineTo(screen.cX + OC.x, screen.cY - OC.y);
+		ctxPl[0].lineTo(screen.cX + vector.x, screen.cY - vector.y);
 		ctxPl[0].stroke();
 		ctxPl[0].closePath();
 	};
