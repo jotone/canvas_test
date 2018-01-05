@@ -71,7 +71,7 @@ $(document).ready(function() {
 			var obj = {
 				x: parseInt($('input[name=x]').val()),
 				y: parseInt($('input[name=y]').val()),
-				mod:  parseInt($('input[name=vel]').val())
+				mod: parseInt($('input[name=vel]').val())
 			};
 			//Calculate perpendicular vector
 			var vector = calculateVector(obj);
